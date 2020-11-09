@@ -4,6 +4,7 @@ const minutesElement = document.querySelector('#minutes');
 const secondsElement = document.querySelector('#seconds');
 const tenthsElement = document.querySelector('#tenths')
 const hundredsElement = document.querySelector('#hundreds');
+const output = document.querySelector('#time');
 
 let time = 0;
 start.addEventListener('click', () => {
@@ -35,11 +36,11 @@ start.addEventListener('click', () => {
     clearInterval(secondsTimer);
     clearInterval(minutesTimer);
     const stopTime = new Date().getTime();
-    
+    const differenceInHundreds = (Math.floor((stopTime - time) / 10)) % 100;
+    const differenceInSeconds = (Math.floor((stopTime - time) / 1000)) % 60;
+    const differenceInMinutes = Math.floor((stopTime - time) / 1000 / 60);
+    hundredsElement.innerText = differenceInHundreds > 9 ? `: ${differenceInHundreds}` : `: 0${differenceInHundreds}`;
+    secondsElement.innerText = differenceInSeconds > 9 ? `: ${differenceInSeconds}` : `: 0${differenceInSeconds}`;
+    minutesElement.innerText = differenceInSeconds > 9 ? `${differenceInMinutes}` : `0${differenceInMinutes}`;
   });
 });
-
-// seconds.innerText = `: ${differenceInSeconds}`;
-// minutes.innerText = `${differenceInMinutes}`;
-// console.log(differenceInSeconds);
-// console.log(differenceInMinutes);
