@@ -5,21 +5,27 @@ const restart = document.querySelector('#restart');
 
 let startTime = 0;
 let myTimer, timesOnStop;
+let initialTimes = {
+  hundreds: 0,
+  seconds: 0,
+  minutes: 0
+}
 start.addEventListener('click', e => {
   // e.target.setAttribute('disabled', 'true');
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     let newTime = new Date().getTime();
-    const times = createTimes(startTime, newTime);
-    output.innerText = outputTimes(times);
+    const finalTimes = createTimes(startTime, newTime, initialTimes);
+    output.innerText = outputTimes(finalTimes);
   }, 100);
 });
 
 stop.addEventListener('click', () => {
   clearInterval(myTimer);
   stopTime = new Date().getTime();
-  timesOnStop = createTimes(startTime, stopTime);
-  // output.innerText = outputTimes(timesOnStop);
+  timesOnStop = createTimes(startTime, stopTime, initialTimes);
+  output.innerText = outputTimes(timesOnStop);
+  initialTimes = timesOnStop;
 });
 
 reset.addEventListener('click', () => {
@@ -29,20 +35,19 @@ reset.addEventListener('click', () => {
 });
 
 restart.addEventListener('click', () => {
-  const restartTime = new Date().getTime();
+  startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const restartTimes = createTimes(restartTime, newTime);
-    const totalTimes = addRestartTimes(timesOnStop, restartTimes);
-    output.innerText = outputTimes(totalTimes);
+    const restartTimes = createTimes(startTime, newTime, initialTimes);
+    output.innerText = outputTimes(restartTimes);
   }, 100);
 });
 
-const createTimes = (startTime, endTime) => {
+const createTimes = (startTime, endTime, initialTimes) => {
   return {
-    hundreds: (Math.floor((endTime - startTime) / 10)) % 100,
-    seconds: (Math.floor((endTime - startTime) / 1000)) % 60,
-    minutes: Math.floor((endTime - startTime) / 1000 / 60)
+    hundreds: ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100,
+    seconds: ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60,
+    minutes: Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
   }
 }
 
