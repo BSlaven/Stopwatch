@@ -28,7 +28,13 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  margin-bottom: 1.5rem;
+  margin: 1rem;
+}
+
+.start-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .time span, p {

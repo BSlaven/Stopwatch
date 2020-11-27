@@ -11,7 +11,9 @@ let initialTimes = {
   minutes: 0
 }
 start.addEventListener('click', e => {
-  // e.target.setAttribute('disabled', 'true');
+  e.target.disabled = true;
+  restart.disabled = true;
+  stop.removeAttribute('disabled');
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     let newTime = new Date().getTime();
@@ -20,8 +22,10 @@ start.addEventListener('click', e => {
   }, 100);
 });
 
-stop.addEventListener('click', () => {
+stop.addEventListener('click', e => {
   clearInterval(myTimer);
+  e.target.disabled = true;
+  restart.disabled = false;
   stopTime = new Date().getTime();
   timesOnStop = createTimes(startTime, stopTime, initialTimes);
   output.innerText = outputTimes(timesOnStop);
@@ -30,11 +34,19 @@ stop.addEventListener('click', () => {
 
 reset.addEventListener('click', () => {
   clearInterval(myTimer);
+  start.disabled = false;
+  stop.disabled = true;
+  restart.disabled = true;
+  initialTimes.hundreds = 0;
+  initialTimes.seconds = 0;
+  initialTimes.minutes = 0;
   startTime = 0;
   output.innerText = `00 : 00 : 00`;
 });
 
 restart.addEventListener('click', () => {
+  start.disabled = true;
+  stop.disabled = false;
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
