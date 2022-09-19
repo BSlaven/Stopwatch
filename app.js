@@ -10,6 +10,7 @@ let initialTimes = {
   seconds: 0,
   minutes: 0
 }
+
 start.addEventListener('click', e => {
   e.target.disabled = true;
   continueBtn.disabled = true;
@@ -31,6 +32,7 @@ stop.addEventListener('click', e => {
   timesOnStop = createTimes(startTime, stopTime, initialTimes);
   output.innerText = outputTimes(timesOnStop);
   initialTimes = timesOnStop;
+  reset.disabled = false;
 });
 
 reset.addEventListener('click', () => {
