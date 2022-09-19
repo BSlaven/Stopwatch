@@ -80,3 +80,7 @@ const addRestartTimes = (stopTimes, restartTimes) => {
     minutes: stopTimes.minutes + restartTimes.minutes
   }
 }
+
+const resetStopwatchValues = () => {
+  
+}
