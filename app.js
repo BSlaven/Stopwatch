@@ -13,6 +13,7 @@ let initialTimes = {
 start.addEventListener('click', e => {
   e.target.disabled = true;
   continueBtn.disabled = true;
+  reset.disabled = true;
   stop.removeAttribute('disabled');
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
