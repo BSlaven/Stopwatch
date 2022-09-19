@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --main-bg-color: #1d035a;
+  --stopwatch-bg-color: #1d035a;
+  --main-accent-color: #e07218;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
@@ -15,15 +21,15 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #1d035a;
-  color: #e07218;
+  background-color: var(--main-bg-color);
+  color: var(--main-accent-color);
 }
 
 .stopwatch {
-  background-color: #1d115a;
+  background-color: var(--stopwatch-bg-color);
   width: 200px;
   height: 200px;
-  border: 5px solid #e07218;
+  border: 5px solid var(--main-accent-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -42,10 +48,10 @@ body {
 }
 
 button {
-  border: 2px solid #e07218;
+  border: 2px solid var(--main-accent-color);
   border-radius: 200px;
-  background-color: #1d115a;
-  color: #e07218;
+  background-color: var(--stopwatch-bg-color);
+  color: var(--main-accent-color);
   text-transform: uppercase;
   font-weight: bold;
   padding: 0.5rem 1rem;
