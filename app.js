@@ -1,7 +1,7 @@
 const start = document.querySelector('#start');
 const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
-const restart = document.querySelector('#restart');
+const continueBtn = document.querySelector('#continue-btn');
 
 let startTime = 0;
 let myTimer, timesOnStop;
@@ -12,7 +12,7 @@ let initialTimes = {
 }
 start.addEventListener('click', e => {
   e.target.disabled = true;
-  restart.disabled = true;
+  continueBtn.disabled = true;
   stop.removeAttribute('disabled');
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
@@ -25,7 +25,7 @@ start.addEventListener('click', e => {
 stop.addEventListener('click', e => {
   clearInterval(myTimer);
   e.target.disabled = true;
-  restart.disabled = false;
+  continueBtn.disabled = false;
   stopTime = new Date().getTime();
   timesOnStop = createTimes(startTime, stopTime, initialTimes);
   output.innerText = outputTimes(timesOnStop);
@@ -36,7 +36,7 @@ reset.addEventListener('click', () => {
   clearInterval(myTimer);
   start.disabled = false;
   stop.disabled = true;
-  restart.disabled = true;
+  continueBtn.disabled = true;
   initialTimes.hundreds = 0;
   initialTimes.seconds = 0;
   initialTimes.minutes = 0;
@@ -44,7 +44,7 @@ reset.addEventListener('click', () => {
   output.innerText = `00 : 00 : 00`;
 });
 
-restart.addEventListener('click', () => {
+continueBtn.addEventListener('click', () => {
   start.disabled = true;
   stop.disabled = false;
   startTime = new Date().getTime();
