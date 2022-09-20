@@ -52,12 +52,12 @@ continueBtn.addEventListener('click', () => {
 });
 
 const createTimes = (startTime, endTime, initialTimes) => {
-  return {
-    hundreds: ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100,
-    seconds: ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60,
-    minutes: Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
-  }
+  const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
+  const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
+  const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
+  return { hundreds, seconds, minutes }
 }
+
 
 const outputTimes = ({ hundreds, minutes, seconds }) => {
   const hundredsText = hundreds > 9 ? `: ${hundreds}` : `: 0${hundreds}`;
