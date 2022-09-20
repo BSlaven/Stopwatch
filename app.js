@@ -37,14 +37,7 @@ stop.addEventListener('click', e => {
 
 reset.addEventListener('click', () => {
   clearInterval(myTimer);
-  start.disabled = false;
-  stop.disabled = true;
-  continueBtn.disabled = true;
-  initialTimes.hundreds = 0;
-  initialTimes.seconds = 0;
-  initialTimes.minutes = 0;
-  startTime = 0;
-  output.innerText = `00 : 00 : 00`;
+  resetStopwatchValues();
 });
 
 continueBtn.addEventListener('click', () => {
@@ -82,5 +75,12 @@ const addRestartTimes = (stopTimes, restartTimes) => {
 }
 
 const resetStopwatchValues = () => {
-  
+  start.disabled = false;
+  stop.disabled = true;
+  continueBtn.disabled = true;
+  initialTimes.hundreds = 0;
+  initialTimes.seconds = 0;
+  initialTimes.minutes = 0;
+  startTime = 0;
+  output.innerText = `00 : 00 : 00`;
 }
