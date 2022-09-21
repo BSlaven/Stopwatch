@@ -67,11 +67,10 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
 }
 
 const addRestartTimes = (stopTimes, restartTimes) => {
-  return {
-    hundreds: (stopTimes.hundreds + restartTimes.hundreds) % 100,
-    seconds: (stopTimes.seconds + restartTimes.seconds) % 60,
-    minutes: stopTimes.minutes + restartTimes.minutes
-  }
+  const hundreds = (stopTimes.hundreds + restartTimes.hundreds) % 100;
+  const seconds = (stopTimes.seconds + restartTimes.seconds) % 60;
+  const minutes = stopTimes.minutes + restartTimes.minutes;
+  return { hundreds, seconds, minutes }
 }
 
 const resetStopwatchValues = () => {
