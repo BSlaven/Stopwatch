@@ -29,6 +29,7 @@ stop.addEventListener('click', e => {
   clearInterval(myTimer);
   e.target.disabled = true;
   continueBtn.disabled = false;
+  start.textContent = 'start';
   stopTime = new Date().getTime();
   timesOnStop = createTimes(startTime, stopTime, initialTimes);
   output.innerText = outputTimes(timesOnStop);
@@ -76,6 +77,7 @@ const addRestartTimes = (stopTimes, restartTimes) => {
 
 const resetStopwatchValues = () => {
   start.disabled = false;
+  start.textContent = 'start';
   stop.disabled = true;
   continueBtn.disabled = true;
   initialTimes.hundreds = 0;
