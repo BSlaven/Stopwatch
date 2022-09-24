@@ -48,12 +48,12 @@ continueBtn.addEventListener('click', () => {
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const restartTimes = createTimes(startTime, newTime, initialTimes);
+    const restartTimes = createTimes(startTime, newTime);
     output.innerText = outputTimes(restartTimes);
   }, 100);
 });
 
-const createTimes = (startTime, endTime, initialTimes) => {
+const createTimes = (startTime, endTime) => {
   const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
   const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
   const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
