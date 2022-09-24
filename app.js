@@ -21,8 +21,9 @@ start.addEventListener('click', e => {
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const finalTimes = createTimes(startTime, newTime);
-    output.innerText = outputTimes(finalTimes);
+    const timeDifference = newTime - myTime;
+    const outputTime = formatTimes(timeDifference);
+    output.innerText = outputTimes(outputTime);
   }, 100);
 });
 
@@ -61,11 +62,20 @@ const createTimes = (startTime, endTime) => {
   return { hundreds, seconds, minutes }
 }
 
+const formatTimes = (time) => {
+  const hundreds = Math.floor(time / 10) % 100;
+  const seconds = Math.floor(time / 10 / 100) % 60;
+  const minutes = Math.floor(time / 10 / 100 / 60) % 60;
+  return { hundreds, seconds, minutes }
+}
+
 const outputTimes = ({ hundreds, minutes, seconds }) => {
-  const hundredsText = hundreds > 9 ? `: ${hundreds}` : `: 0${hundreds}`;
-  const secondsText = seconds > 9 ? `: ${seconds} ` : `: 0${seconds} `;
-  const minutesText = minutes > 9 ? `${minutes} ` : `0${minutes} `;
-  return minutesText + secondsText + hundredsText;
+  // const hundredsText = hundreds > 9 ? `: ${hundreds}` : `. 0${hundreds}`;
+  // const secondsText = seconds > 9 ? `: ${seconds} ` : `: 0${seconds} `;
+  // const minutesText = minutes > 9 ? `${minutes} ` : `0${minutes} `;
+  // return minutesText + secondsText + hundredsText;
+  console.log(minutes);
+  return `${minutes}: ${seconds}.${hundreds}`;
 }
 
 const addRestartTimes = (stopTimes, restartTimes) => {
