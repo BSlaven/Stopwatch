@@ -3,6 +3,7 @@ const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
 const continueBtn = document.querySelector('#continue-btn');
 
+let myTime = 0;
 let startTime = 0;
 let myTimer, timesOnStop;
 let initialTimes = {
@@ -59,7 +60,6 @@ const createTimes = (startTime, endTime) => {
   const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
   return { hundreds, seconds, minutes }
 }
-
 
 const outputTimes = ({ hundreds, minutes, seconds }) => {
   const hundredsText = hundreds > 9 ? `: ${hundreds}` : `: 0${hundreds}`;
