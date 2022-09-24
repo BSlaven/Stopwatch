@@ -3,7 +3,6 @@ const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
 const continueBtn = document.querySelector('#continue-btn');
 
-let myTime = 0;
 let startTime = 0;
 let myTimer, timesOnStop;
 let initialTimes = {
