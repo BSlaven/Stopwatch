@@ -19,8 +19,8 @@ start.addEventListener('click', e => {
   stop.removeAttribute('disabled');
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
-    let newTime = new Date().getTime();
-    const finalTimes = createTimes(startTime, newTime, initialTimes);
+    const newTime = new Date().getTime();
+    const finalTimes = createTimes(startTime, newTime);
     output.innerText = outputTimes(finalTimes);
   }, 100);
 });
