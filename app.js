@@ -46,20 +46,22 @@ reset.addEventListener('click', () => {
 continueBtn.addEventListener('click', () => {
   start.disabled = true;
   stop.disabled = false;
-  startTime = new Date().getTime();
+  const restartTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const restartTimes = createTimes(startTime, newTime);
-    output.innerText = outputTimes(restartTimes);
+    const totalRestartTime = newTime - restartTime;
+    const difference = totalRestartTime - startTime;
+    const outputTime = formatTimes(difference)
+    output.innerText = outputTimes(outputTime);
   }, 100);
 });
 
-const createTimes = (startTime, endTime) => {
-  const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
-  const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
-  const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
-  return { hundreds, seconds, minutes }
-}
+// const createTimes = (startTime, endTime) => {
+//   const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
+//   const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
+//   const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
+//   return { hundreds, seconds, minutes }
+// }
 
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
@@ -69,9 +71,9 @@ const formatTimes = (time) => {
 }
 
 const outputTimes = ({ hundreds, minutes, seconds }) => {
-  const hundredsText = hundreds > 9 ? `: ${hundreds}` : `. 0${hundreds}`;
-  const secondsText = seconds > 9 ? `: ${seconds} ` : `: 0${seconds} `;
   const minutesText = minutes > 9 ? `${minutes} ` : `0${minutes} `;
+  const secondsText = seconds > 9 ? ` : ${seconds}` : ` : 0${seconds}`;
+  const hundredsText = hundreds > 9 ? `.${hundreds}` : `.0${hundreds}`;
   return minutesText + secondsText + hundredsText;
 }
 
