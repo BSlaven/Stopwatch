@@ -20,7 +20,7 @@ start.addEventListener('click', e => {
   startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const timeDifference = newTime - myTime;
+    const timeDifference = newTime - startTime;
     const outputTime = formatTimes(timeDifference);
     output.innerText = outputTimes(outputTime);
   }, 100);
@@ -69,12 +69,10 @@ const formatTimes = (time) => {
 }
 
 const outputTimes = ({ hundreds, minutes, seconds }) => {
-  // const hundredsText = hundreds > 9 ? `: ${hundreds}` : `. 0${hundreds}`;
-  // const secondsText = seconds > 9 ? `: ${seconds} ` : `: 0${seconds} `;
-  // const minutesText = minutes > 9 ? `${minutes} ` : `0${minutes} `;
-  // return minutesText + secondsText + hundredsText;
-  console.log(minutes);
-  return `${minutes}: ${seconds}.${hundreds}`;
+  const hundredsText = hundreds > 9 ? `: ${hundreds}` : `. 0${hundreds}`;
+  const secondsText = seconds > 9 ? `: ${seconds} ` : `: 0${seconds} `;
+  const minutesText = minutes > 9 ? `${minutes} ` : `0${minutes} `;
+  return minutesText + secondsText + hundredsText;
 }
 
 const addRestartTimes = (stopTimes, restartTimes) => {
