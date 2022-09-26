@@ -46,11 +46,13 @@ reset.addEventListener('click', () => {
 continueBtn.addEventListener('click', () => {
   start.disabled = true;
   stop.disabled = false;
-  startTime = new Date().getTime();
+  const restartTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const restartTimes = createTimes(startTime, newTime);
-    output.innerText = outputTimes(restartTimes);
+    const totalRestartTime = newTime - restartTime;
+    const difference = totalRestartTime - startTime;
+    const outputTime = formatTimes(difference)
+    output.innerText = outputTimes(outputTime);
   }, 100);
 });
 
