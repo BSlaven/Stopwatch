@@ -50,6 +50,7 @@ continueBtn.addEventListener('click', () => {
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
     const totalRestartTime = newTime - restartTime;
+    console.log(totalRestartTime)
     const difference = totalRestartTime - startTime;
     const outputTime = formatTimes(difference)
     output.textContent = outputTimes(outputTime);
