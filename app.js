@@ -4,6 +4,7 @@ const reset = document.querySelector('#reset');
 const continueBtn = document.querySelector('#continue-btn');
 
 let startTime = 0;
+let totalTime = 0;
 let myTimer, timesOnStop;
 let initialTimes = {
   hundreds: 0,
@@ -21,7 +22,8 @@ start.addEventListener('click', e => {
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
     const timeDifference = newTime - startTime;
-    const outputTime = formatTimes(timeDifference);
+    totalTime = timeDifference;
+    const outputTime = formatTimes(totalTime);
     output.innerText = outputTimes(outputTime);
   }, 100);
 });
@@ -49,10 +51,9 @@ continueBtn.addEventListener('click', () => {
   const restartTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const totalRestartTime = newTime - restartTime;
-    console.log(totalRestartTime)
-    const difference = totalRestartTime - startTime;
-    const outputTime = formatTimes(difference)
+    const restartDifference = newTime - restartTime;
+    totalTime = restartDifference;
+    const outputTime = formatTimes(totalTime)
     output.textContent = outputTimes(outputTime);
   }, 100);
 });
