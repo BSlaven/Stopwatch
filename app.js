@@ -94,5 +94,5 @@ const resetStopwatchValues = () => {
   initialTimes.seconds = 0;
   initialTimes.minutes = 0;
   startTime = 0;
-  output.innerText = `00 : 00 : 00`;
+  output.innerText = `00 : 00.00`;
 }
