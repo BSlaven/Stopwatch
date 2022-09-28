@@ -52,7 +52,7 @@ continueBtn.addEventListener('click', () => {
     const totalRestartTime = newTime - restartTime;
     const difference = totalRestartTime - startTime;
     const outputTime = formatTimes(difference)
-    output.innerText = outputTimes(outputTime);
+    output.textContent = outputTimes(outputTime);
   }, 100);
 });
 
