@@ -34,10 +34,6 @@ stop.addEventListener('click', e => {
   continueBtn.disabled = false;
   reset.disabled = false;
   start.textContent = 'start';
-  // stopTime = new Date().getTime();
-  // timesOnStop = createTimes(startTime, stopTime, initialTimes);
-  // output.innerText = outputTimes(timesOnStop);
-  // initialTimes = timesOnStop;
 });
 
 reset.addEventListener('click', () => {
