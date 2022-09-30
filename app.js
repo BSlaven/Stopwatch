@@ -53,13 +53,6 @@ continueBtn.addEventListener('click', () => {
   }, 100);
 });
 
-const createTimes = (startTime, endTime) => {
-  const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
-  const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
-  const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
-  return { hundreds, seconds, minutes }
-}
-
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
   const seconds = Math.floor(time / 10 / 100) % 60;
@@ -72,13 +65,6 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   const secondsText = seconds > 9 ? ` : ${seconds}` : ` : 0${seconds}`;
   const hundredsText = hundreds > 9 ? `.${hundreds}` : `.0${hundreds}`;
   return minutesText + secondsText + hundredsText;
-}
-
-const addRestartTimes = (stopTimes, restartTimes) => {
-  const hundreds = (stopTimes.hundreds + restartTimes.hundreds) % 100;
-  const seconds = (stopTimes.seconds + restartTimes.seconds) % 60;
-  const minutes = stopTimes.minutes + restartTimes.minutes;
-  return { hundreds, seconds, minutes }
 }
 
 const resetStopwatchValues = () => {
