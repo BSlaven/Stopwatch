@@ -32,12 +32,8 @@ stop.addEventListener('click', e => {
   clearInterval(myTimer);
   e.target.disabled = true;
   continueBtn.disabled = false;
-  start.textContent = 'start';
-  stopTime = new Date().getTime();
-  timesOnStop = createTimes(startTime, stopTime, initialTimes);
-  output.innerText = outputTimes(timesOnStop);
-  initialTimes = timesOnStop;
   reset.disabled = false;
+  start.textContent = 'start';
 });
 
 reset.addEventListener('click', () => {
@@ -52,17 +48,11 @@ continueBtn.addEventListener('click', () => {
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
     const restartDifference = newTime - restartTime;
-    const outputTime = formatTimes(restartDifference + totalTime);
+    const restartAddedTime = restartDifference + totalTime;
+    const outputTime = formatTimes(restartAddedTime);
     output.textContent = outputTimes(outputTime);
   }, 100);
 });
-
-const createTimes = (startTime, endTime) => {
-  const hundreds = ((Math.floor((endTime - startTime) / 10)) + initialTimes.hundreds) % 100;
-  const seconds = ((Math.floor((endTime - startTime) / 1000)) + initialTimes.seconds) % 60;
-  const minutes = Math.floor((endTime - startTime) / 1000 / 60) + initialTimes.minutes
-  return { hundreds, seconds, minutes }
-}
 
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
@@ -76,13 +66,6 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   const secondsText = seconds > 9 ? ` : ${seconds}` : ` : 0${seconds}`;
   const hundredsText = hundreds > 9 ? `.${hundreds}` : `.0${hundreds}`;
   return minutesText + secondsText + hundredsText;
-}
-
-const addRestartTimes = (stopTimes, restartTimes) => {
-  const hundreds = (stopTimes.hundreds + restartTimes.hundreds) % 100;
-  const seconds = (stopTimes.seconds + restartTimes.seconds) % 60;
-  const minutes = stopTimes.minutes + restartTimes.minutes;
-  return { hundreds, seconds, minutes }
 }
 
 const resetStopwatchValues = () => {
