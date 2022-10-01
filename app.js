@@ -69,6 +69,7 @@ const resetStopwatchValues = () => {
   stop.disabled = true;
   continueBtn.disabled = true;
   output.innerText = `00 : 00.00`;
+  totalTime = 0;
 }
 
 const stopAndPause = () => {
