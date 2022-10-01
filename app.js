@@ -6,11 +6,6 @@ const continueBtn = document.querySelector('#continue-btn');
 let isRunning = false;
 let totalTime = 0;
 let myTimer, timesOnStop;
-let initialTimes = {
-  hundreds: 0,
-  seconds: 0,
-  minutes: 0
-}
 
 start.addEventListener('click', e => {
   if(isRunning) {
@@ -73,10 +68,8 @@ const resetStopwatchValues = () => {
   start.textContent = 'start';
   stop.disabled = true;
   continueBtn.disabled = true;
-  initialTimes.hundreds = 0;
-  initialTimes.seconds = 0;
-  initialTimes.minutes = 0;
   output.innerText = `00 : 00.00`;
+  totalTime = 0;
 }
 
 const stopAndPause = () => {
