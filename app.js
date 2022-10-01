@@ -17,6 +17,7 @@ start.addEventListener('click', e => {
     stopAndPause();
     return;
   }
+  isRunning = true;
   e.target.disabled = true;
   e.target.textContent = 'pause';
   continueBtn.disabled = true;
@@ -85,4 +86,5 @@ const stopAndPause = () => {
   reset.disabled = false;
   stop.disabled = true;
   start.textContent = 'start';
+  isRunning = false;
 }
