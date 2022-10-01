@@ -13,6 +13,10 @@ let initialTimes = {
 }
 
 start.addEventListener('click', e => {
+  if(isRunning) {
+    stopAndPause();
+    return;
+  }
   e.target.disabled = true;
   e.target.textContent = 'pause';
   continueBtn.disabled = true;
