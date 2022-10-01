@@ -6,11 +6,6 @@ const continueBtn = document.querySelector('#continue-btn');
 let isRunning = false;
 let totalTime = 0;
 let myTimer, timesOnStop;
-let initialTimes = {
-  hundreds: 0,
-  seconds: 0,
-  minutes: 0
-}
 
 start.addEventListener('click', e => {
   if(isRunning) {
