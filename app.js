@@ -3,7 +3,7 @@ const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
 const continueBtn = document.querySelector('#continue-btn');
 
-let startTime = 0;
+let isRunning = false;
 let totalTime = 0;
 let myTimer, timesOnStop;
 let initialTimes = {
@@ -13,12 +13,16 @@ let initialTimes = {
 }
 
 start.addEventListener('click', e => {
-  e.target.disabled = true;
+  if(isRunning) {
+    stopAndPause();
+    return;
+  }
+  isRunning = true;
   e.target.textContent = 'pause';
   continueBtn.disabled = true;
   reset.disabled = true;
   stop.removeAttribute('disabled');
-  startTime = new Date().getTime();
+  const startTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
     const timeDifference = newTime - startTime;
@@ -29,11 +33,7 @@ start.addEventListener('click', e => {
 });
 
 stop.addEventListener('click', e => {
-  clearInterval(myTimer);
-  e.target.disabled = true;
-  continueBtn.disabled = false;
-  reset.disabled = false;
-  start.textContent = 'start';
+  stopAndPause();
 });
 
 reset.addEventListener('click', () => {
@@ -76,6 +76,14 @@ const resetStopwatchValues = () => {
   initialTimes.hundreds = 0;
   initialTimes.seconds = 0;
   initialTimes.minutes = 0;
-  startTime = 0;
   output.innerText = `00 : 00.00`;
+}
+
+const stopAndPause = () => {
+  clearInterval(myTimer);
+  continueBtn.disabled = false;
+  reset.disabled = false;
+  stop.disabled = true;
+  start.textContent = 'start';
+  isRunning = false;
 }
