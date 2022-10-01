@@ -18,7 +18,6 @@ start.addEventListener('click', e => {
     return;
   }
   isRunning = true;
-  e.target.disabled = true;
   e.target.textContent = 'pause';
   continueBtn.disabled = true;
   reset.disabled = true;
