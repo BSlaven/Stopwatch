@@ -80,4 +80,6 @@ const stopAndPause = () => {
   stop.disabled = true;
   start.textContent = 'start';
   isRunning = false;
+  totalTime += restartTotalTime;
+  restartTotalTime = 0;
 }
