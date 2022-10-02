@@ -64,15 +64,6 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   return minutesText + secondsText + hundredsText;
 }
 
-const resetStopwatchValues = () => {
-  start.disabled = false;
-  start.textContent = 'start';
-  stop.disabled = true;
-  continueBtn.disabled = true;
-  output.innerText = `00 : 00.00`;
-  totalTime = 0;
-}
-
 const stopAndPause = () => {
   clearInterval(myTimer);
   continueBtn.disabled = false;
@@ -82,4 +73,13 @@ const stopAndPause = () => {
   isRunning = false;
   totalTime += restartTotalTime;
   restartTotalTime = 0;
+}
+
+const resetStopwatchValues = () => {
+  start.disabled = false;
+  start.textContent = 'start';
+  stop.disabled = true;
+  continueBtn.disabled = true;
+  output.innerText = `00 : 00.00`;
+  totalTime = 0;
 }
