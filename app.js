@@ -64,6 +64,10 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   return minutesText + secondsText + hundredsText;
 }
 
+const startOrRestart = () => {
+  
+}
+
 const stopAndPause = () => {
   clearInterval(myTimer);
   continueBtn.disabled = false;
