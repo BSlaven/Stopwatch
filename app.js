@@ -43,9 +43,8 @@ continueBtn.addEventListener('click', () => {
   const restartTime = new Date().getTime();
   myTimer = setInterval(() => {
     const newTime = new Date().getTime();
-    const restartDifference = newTime - restartTime;
-    const restartAddedTime = restartDifference + totalTime;
-    totalTime += restartDifference;
+    restartTotalTime = newTime - restartTime;
+    const restartAddedTime = restartTotalTime + totalTime;
     const outputTime = formatTimes(restartAddedTime);
     output.textContent = outputTimes(outputTime);
   }, 100);
