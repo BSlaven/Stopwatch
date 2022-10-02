@@ -5,6 +5,7 @@ const continueBtn = document.querySelector('#continue-btn');
 
 let isRunning = false;
 let totalTime = 0;
+let restartTotalTime = 0;
 let myTimer, timesOnStop;
 
 start.addEventListener('click', e => {
@@ -44,6 +45,7 @@ continueBtn.addEventListener('click', () => {
     const newTime = new Date().getTime();
     const restartDifference = newTime - restartTime;
     const restartAddedTime = restartDifference + totalTime;
+    totalTime += restartDifference;
     const outputTime = formatTimes(restartAddedTime);
     output.textContent = outputTimes(outputTime);
   }, 100);
