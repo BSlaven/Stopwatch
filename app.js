@@ -6,26 +6,10 @@ const continueBtn = document.querySelector('#continue-btn');
 let isRunning = false;
 let totalTime = 0;
 let restartTotalTime = 0;
-let myTimer, timesOnStop;
+let myTimer;
 
 start.addEventListener('click', e => {
-  if(isRunning) {
-    stopAndPause();
-    return;
-  }
-  isRunning = true;
-  e.target.textContent = 'pause';
-  continueBtn.disabled = true;
-  reset.disabled = true;
-  stop.removeAttribute('disabled');
-  const startTime = new Date().getTime();
-  myTimer = setInterval(() => {
-    const newTime = new Date().getTime();
-    const timeDifference = newTime - startTime;
-    totalTime = timeDifference;
-    const outputTime = formatTimes(totalTime);
-    output.innerText = outputTimes(outputTime);
-  }, 100);
+  startOrRestart();
 });
 
 stop.addEventListener('click', e => {
@@ -35,19 +19,6 @@ stop.addEventListener('click', e => {
 reset.addEventListener('click', () => {
   clearInterval(myTimer);
   resetStopwatchValues();
-});
-
-continueBtn.addEventListener('click', () => {
-  start.disabled = true;
-  stop.disabled = false;
-  const restartTime = new Date().getTime();
-  myTimer = setInterval(() => {
-    const newTime = new Date().getTime();
-    restartTotalTime = newTime - restartTime;
-    const restartWithTotalTime = restartTotalTime + totalTime;
-    const outputTime = formatTimes(restartWithTotalTime);
-    output.textContent = outputTimes(outputTime);
-  }, 100);
 });
 
 const formatTimes = (time) => {
@@ -64,6 +35,43 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   return minutesText + secondsText + hundredsText;
 }
 
+const startOrRestart = () => {
+  if(!isRunning) {
+    const startTime = new Date().getTime();
+    start.textContent = 'pause';
+    isRunning = true;
+    myTimer = setInterval(() => {
+      const newTime = new Date().getTime();
+      const timeDifference = newTime - startTime;
+      totalTime = timeDifference;
+      const outputTime = formatTimes(totalTime);
+      output.innerText = outputTimes(outputTime);
+    }, 100);
+  } else {
+    isRunning = false;
+    start.textContent = 'restart';
+    const restartTime = new Date().getTime();
+    clearInterval(myTimer);
+    myTimer = setInterval(() => {
+      const newTime = new Date().getTime();
+      restartTotalTime = newTime - restartTime;
+      const restartWithTotalTime = restartTotalTime + totalTime;
+      const outputTime = formatTimes(restartWithTotalTime);
+      output.textContent = outputTimes(outputTime);
+    }, 100);
+  }
+}
+
+const stopAndPause = () => {
+  clearInterval(myTimer);
+  continueBtn.disabled = false;
+  reset.disabled = false;
+  start.textContent = 'restart';
+  isRunning = false;
+  totalTime += restartTotalTime;
+  restartTotalTime = 0;
+}
+
 const resetStopwatchValues = () => {
   start.disabled = false;
   start.textContent = 'start';
@@ -71,15 +79,4 @@ const resetStopwatchValues = () => {
   continueBtn.disabled = true;
   output.innerText = `00 : 00.00`;
   totalTime = 0;
-}
-
-const stopAndPause = () => {
-  clearInterval(myTimer);
-  continueBtn.disabled = false;
-  reset.disabled = false;
-  stop.disabled = true;
-  start.textContent = 'start';
-  isRunning = false;
-  totalTime += restartTotalTime;
-  restartTotalTime = 0;
 }
