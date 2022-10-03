@@ -21,19 +21,6 @@ reset.addEventListener('click', () => {
   resetStopwatchValues();
 });
 
-// continueBtn.addEventListener('click', () => {
-//   start.disabled = true;
-//   stop.disabled = false;
-//   const restartTime = new Date().getTime();
-//   myTimer = setInterval(() => {
-//     const newTime = new Date().getTime();
-//     restartTotalTime = newTime - restartTime;
-//     const restartWithTotalTime = restartTotalTime + totalTime;
-//     const outputTime = formatTimes(restartWithTotalTime);
-//     output.textContent = outputTimes(outputTime);
-//   }, 100);
-// });
-
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
   const seconds = Math.floor(time / 10 / 100) % 60;
@@ -50,9 +37,9 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
 
 const startOrRestart = () => {
   if(!isRunning) {
-    isRunning = true;
-    start.textContent = 'pause';
     const startTime = new Date().getTime();
+    start.textContent = 'pause';
+    isRunning = true;
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
       const timeDifference = newTime - startTime;
@@ -60,11 +47,11 @@ const startOrRestart = () => {
       const outputTime = formatTimes(totalTime);
       output.innerText = outputTimes(outputTime);
     }, 100);
-    return;
   } else {
     isRunning = false;
     start.textContent = 'restart';
     const restartTime = new Date().getTime();
+    clearInterval(myTimer);
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
       restartTotalTime = newTime - restartTime;
@@ -73,8 +60,6 @@ const startOrRestart = () => {
       output.textContent = outputTimes(outputTime);
     }, 100);
   }
-  // isRunning = true;
-  // reset.disabled = true;
 }
 
 const stopAndPause = () => {
