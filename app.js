@@ -13,19 +13,6 @@ start.addEventListener('click', e => {
     stopAndPause();
     return;
   }
-  isRunning = true;
-  e.target.textContent = 'pause';
-  continueBtn.disabled = true;
-  reset.disabled = true;
-  stop.removeAttribute('disabled');
-  const startTime = new Date().getTime();
-  myTimer = setInterval(() => {
-    const newTime = new Date().getTime();
-    const timeDifference = newTime - startTime;
-    totalTime = timeDifference;
-    const outputTime = formatTimes(totalTime);
-    output.innerText = outputTimes(outputTime);
-  }, 100);
 });
 
 stop.addEventListener('click', e => {
@@ -65,7 +52,32 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
 }
 
 const startOrRestart = () => {
-  
+  if(!isRunning) {
+    isRunning = true;
+    e.target.textContent = 'pause';
+    const startTime = new Date().getTime();
+    myTimer = setInterval(() => {
+      const newTime = new Date().getTime();
+      const timeDifference = newTime - startTime;
+      totalTime = timeDifference;
+      const outputTime = formatTimes(totalTime);
+      output.innerText = outputTimes(outputTime);
+    }, 100);
+    return;
+  } else {
+    isRunning = false;
+    const restartTime = new Date().getTime();
+    myTimer = setInterval(() => {
+      const newTime = new Date().getTime();
+      restartTotalTime = newTime - restartTime;
+      const restartWithTotalTime = restartTotalTime + totalTime;
+      const outputTime = formatTimes(restartWithTotalTime);
+      output.textContent = outputTimes(outputTime);
+    }, 100);
+  }
+  // isRunning = true;
+  // reset.disabled = true;
+  // stop.removeAttribute('disabled');
 }
 
 const stopAndPause = () => {
