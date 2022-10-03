@@ -6,13 +6,10 @@ const continueBtn = document.querySelector('#continue-btn');
 let isRunning = false;
 let totalTime = 0;
 let restartTotalTime = 0;
-let myTimer, timesOnStop;
+let myTimer;
 
 start.addEventListener('click', e => {
-  if(isRunning) {
-    stopAndPause();
-    return;
-  }
+  startOrRestart();
 });
 
 stop.addEventListener('click', e => {
@@ -24,18 +21,18 @@ reset.addEventListener('click', () => {
   resetStopwatchValues();
 });
 
-continueBtn.addEventListener('click', () => {
-  start.disabled = true;
-  stop.disabled = false;
-  const restartTime = new Date().getTime();
-  myTimer = setInterval(() => {
-    const newTime = new Date().getTime();
-    restartTotalTime = newTime - restartTime;
-    const restartWithTotalTime = restartTotalTime + totalTime;
-    const outputTime = formatTimes(restartWithTotalTime);
-    output.textContent = outputTimes(outputTime);
-  }, 100);
-});
+// continueBtn.addEventListener('click', () => {
+//   start.disabled = true;
+//   stop.disabled = false;
+//   const restartTime = new Date().getTime();
+//   myTimer = setInterval(() => {
+//     const newTime = new Date().getTime();
+//     restartTotalTime = newTime - restartTime;
+//     const restartWithTotalTime = restartTotalTime + totalTime;
+//     const outputTime = formatTimes(restartWithTotalTime);
+//     output.textContent = outputTimes(outputTime);
+//   }, 100);
+// });
 
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
@@ -54,7 +51,7 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
 const startOrRestart = () => {
   if(!isRunning) {
     isRunning = true;
-    e.target.textContent = 'pause';
+    start.textContent = 'pause';
     const startTime = new Date().getTime();
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
@@ -66,6 +63,7 @@ const startOrRestart = () => {
     return;
   } else {
     isRunning = false;
+    start.textContent = 'restart';
     const restartTime = new Date().getTime();
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
@@ -77,15 +75,13 @@ const startOrRestart = () => {
   }
   // isRunning = true;
   // reset.disabled = true;
-  // stop.removeAttribute('disabled');
 }
 
 const stopAndPause = () => {
   clearInterval(myTimer);
   continueBtn.disabled = false;
   reset.disabled = false;
-  stop.disabled = true;
-  start.textContent = 'start';
+  start.textContent = 'restart';
   isRunning = false;
   totalTime += restartTotalTime;
   restartTotalTime = 0;
