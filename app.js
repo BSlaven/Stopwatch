@@ -1,8 +1,8 @@
 const stopwatchContainer = document.querySelector('#stopwatch');
-const start = document.querySelector('#start');
+const startRestartBtn = document.querySelector('#start');
 const stop = document.querySelector('#stop');
 const reset = document.querySelector('#reset');
-const continueBtn = document.querySelector('#continue-btn');
+const lapBtn = document.querySelector('#lap-btn');
 
 let isRunning = false;
 let totalTime = 0;
@@ -40,6 +40,14 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
   return minutesText + secondsText + hundredsText;
 }
 
+const startClickHandler = () => {
+  if(isRunning) {
+    stopAndPause();
+    return;
+  }
+  startOrRestart();
+}
+
 const startOrRestart = () => {
   isRunning = true;
   const startTime = new Date().getTime();
@@ -64,20 +72,19 @@ const startOrRestart = () => {
 }
 
 const stopAndPause = () => {
+  if(!isRunning) return;
   clearInterval(myTimer);
-  continueBtn.disabled = false;
-  reset.disabled = false;
-  start.textContent = 'restart';
+  lapBtn.disabled = false;
+  startRestartBtn.textContent = 'restart';
   isRunning = false;
   totalTime += restartTotalTime;
   restartTotalTime = 0;
 }
 
 const resetStopwatchValues = () => {
-  start.disabled = false;
-  start.textContent = 'start';
-  stop.disabled = true;
-  continueBtn.disabled = true;
+  isRunning = false;
+  startRestartBtn.textContent = 'start';
   output.innerText = `00 : 00.00`;
   totalTime = 0;
+  restartTotalTime = 0;
 }
