@@ -9,6 +9,10 @@ let totalTime = 0;
 let restartTotalTime = 0;
 let myTimer;
 
+stopwatchContainer.addEventListener('click', e => {
+  startClickHandler();
+});
+
 start.addEventListener('click', e => {
   startOrRestart();
 });
