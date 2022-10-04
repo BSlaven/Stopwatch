@@ -36,25 +36,21 @@ const outputTimes = ({ hundreds, minutes, seconds }) => {
 }
 
 const startOrRestart = () => {
-  if(!isRunning) {
-    const startTime = new Date().getTime();
-    start.textContent = 'pause';
-    isRunning = true;
+  isRunning = true;
+  const startTime = new Date().getTime();
+  startRestartBtn.textContent = 'pause';
+  if(totalTime === 0) {
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
       const timeDifference = newTime - startTime;
       totalTime = timeDifference;
       const outputTime = formatTimes(totalTime);
-      output.innerText = outputTimes(outputTime);
+      output.textContent = outputTimes(outputTime);
     }, 100);
   } else {
-    isRunning = false;
-    start.textContent = 'restart';
-    const restartTime = new Date().getTime();
-    clearInterval(myTimer);
     myTimer = setInterval(() => {
       const newTime = new Date().getTime();
-      restartTotalTime = newTime - restartTime;
+      restartTotalTime = newTime - startTime;
       const restartWithTotalTime = restartTotalTime + totalTime;
       const outputTime = formatTimes(restartWithTotalTime);
       output.textContent = outputTimes(outputTime);
