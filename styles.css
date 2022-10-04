@@ -5,7 +5,7 @@
 }
 
 :root {
-  --main-bg-color: #1d035a;
+  --main-bg-color: #c2c9d4;
   --stopwatch-bg-color: #1d035a;
   --main-accent-color: #e07218;
 }
@@ -70,4 +70,12 @@ button:focus {
 
 button:active {
   transform: scale(0.98);
+}
+
+.stop {
+  color: rgb(168, 13, 13);
+}
+
+.stop:is(:active) {
+  border-color: red;
 }
