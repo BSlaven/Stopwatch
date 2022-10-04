@@ -74,7 +74,6 @@ const startOrRestart = () => {
 const stopAndPause = () => {
   if(!isRunning) return;
   clearInterval(myTimer);
-  lapBtn.disabled = false;
   startRestartBtn.textContent = 'restart';
   isRunning = false;
   totalTime += restartTotalTime;
