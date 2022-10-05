@@ -26,6 +26,10 @@ reset.addEventListener('click', () => {
   resetStopwatchValues();
 });
 
+lapBtn.addEventListener('click', e => {
+  showLapTime();
+})
+
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
   const seconds = Math.floor(time / 10 / 100) % 60;
@@ -78,6 +82,10 @@ const stopAndPause = () => {
   isRunning = false;
   totalTime += restartTotalTime;
   restartTotalTime = 0;
+}
+
+const showLapTime = () => {
+  console.log('this is lap time');
 }
 
 const resetStopwatchValues = () => {
