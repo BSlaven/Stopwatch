@@ -14,7 +14,7 @@ stopwatchContainer.addEventListener('click', e => {
 });
 
 start.addEventListener('click', e => {
-  startOrRestart();
+  startClickHandler()
 });
 
 stop.addEventListener('click', e => {
@@ -76,7 +76,6 @@ const startOrRestart = () => {
 }
 
 const stopAndPause = () => {
-  if(!isRunning) return;
   clearInterval(myTimer);
   startRestartBtn.textContent = 'restart';
   isRunning = false;
