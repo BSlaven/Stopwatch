@@ -34,8 +34,7 @@ lapBtn.addEventListener('click', e => {
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
   const seconds = Math.floor(time / 10 / 100) % 60;
-  const minutes = Math.floor(time / 10 /
-   100 / 60) % 60;
+  const minutes = Math.floor(time / 10 / 100 / 60) % 60;
   return { hundreds, seconds, minutes }
 }
 
@@ -97,17 +96,17 @@ const createLapElement = (time) => {
   const lapNumberElement = document.createElement('p');
   lapNumberElement.textContent = '1';
   lapNumberElement.classList.add('lap-number');
-  const lapTimeElement = document.createElement('p');
-  lapTimeElement.classList.add = 'lap-time';
-  lapTimeElement.textContent = '00:00.00';
-  lapElement.append(lapNumberElement); 
+  const lapTimeElement = createLapTimeElement(time);
+  lapElement.append(lapNumberElement);
   lapElement.append(lapTimeElement);
 }
 
 const createLapTimeElement = time => {
+  const lapTime = formatTimes(time);
+  const lapTimeText = outputTimes(lapTime);
   const lapTimeElement = document.createElement('p');
   lapTimeElement.classList.add = 'lap-time';
-  lapTimeElement.textContent = '00:00.00';
+  lapTimeElement.textContent = lapTimeText;
 
   return lapTimeElement;
 }
