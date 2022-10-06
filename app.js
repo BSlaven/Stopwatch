@@ -86,11 +86,12 @@ const stopAndPause = () => {
 }
 
 const addLapTime = () => {
-  createLapElement();
-  console.log(lapsContainer);
+  const newLapTime = totalTime + restartTotalTime;
+  const newLapElement = createLapElement(newLapTime);
+  lapsContainer.append(newLapElement);
 }
 
-const createLapElement = () => {
+const createLapElement = (time) => {
   const lapElement = document.createElement('div');
   lapElement.classList.add('lap');
   const lapNumberElement = document.createElement('p');
@@ -101,8 +102,6 @@ const createLapElement = () => {
   lapTimeElement.textContent = '00:00.00';
   lapElement.append(lapNumberElement); 
   lapElement.append(lapTimeElement);
-
-  lapsContainer.append(lapElement);
 }
 
 const resetStopwatchValues = () => {
