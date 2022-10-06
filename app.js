@@ -97,8 +97,11 @@ const createLapElement = (time) => {
   lapNumberElement.textContent = '1';
   lapNumberElement.classList.add('lap-number');
   const lapTimeElement = createLapTimeElement(time);
+  console.log(lapTimeElement);
   lapElement.append(lapNumberElement);
   lapElement.append(lapTimeElement);
+
+  return lapElement;
 }
 
 const createLapTimeElement = time => {
