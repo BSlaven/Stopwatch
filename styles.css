@@ -8,6 +8,7 @@
   --main-bg-color: #f9f4ef;
   --stopwatch-bg-color: #fff;
   --main-accent-color: #020826;
+  --secondary-accent-color: rgb(253, 207, 251);
   --accent-green-color: rgb(10, 87, 10);
   --accent-green-red: rgb(168, 13, 13);
 }
@@ -43,6 +44,26 @@ body {
 
 .stopwatch:active {
   scale: 0.98;
+}
+
+.laps-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.lap {
+  width: 200px;
+  height: 50px;
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-accent-color);
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .start-buttons {
