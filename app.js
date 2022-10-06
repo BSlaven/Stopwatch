@@ -104,6 +104,14 @@ const createLapElement = (time) => {
   lapElement.append(lapTimeElement);
 }
 
+const createLapTimeElement = time => {
+  const lapTimeElement = document.createElement('p');
+  lapTimeElement.classList.add = 'lap-time';
+  lapTimeElement.textContent = '00:00.00';
+
+  return lapTimeElement;
+}
+
 const resetStopwatchValues = () => {
   isRunning = false;
   startRestartBtn.textContent = 'start';
