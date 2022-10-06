@@ -1,3 +1,4 @@
+const lapsContainer = document.querySelector('#laps-container');
 const stopwatchContainer = document.querySelector('#stopwatch');
 const startRestartBtn = document.querySelector('#start');
 const stop = document.querySelector('#stop');
@@ -27,13 +28,14 @@ reset.addEventListener('click', () => {
 });
 
 lapBtn.addEventListener('click', e => {
-  showLapTime();
+  addLapTime();
 })
 
 const formatTimes = (time) => {
   const hundreds = Math.floor(time / 10) % 100;
   const seconds = Math.floor(time / 10 / 100) % 60;
-  const minutes = Math.floor(time / 10 / 100 / 60) % 60;
+  const minutes = Math.floor(time / 10 /
+   100 / 60) % 60;
   return { hundreds, seconds, minutes }
 }
 
@@ -83,8 +85,24 @@ const stopAndPause = () => {
   restartTotalTime = 0;
 }
 
-const showLapTime = () => {
-  console.log('this is lap time');
+const addLapTime = () => {
+  createLapElement();
+  console.log(lapsContainer);
+}
+
+const createLapElement = () => {
+  const lapElement = document.createElement('div');
+  lapElement.classList.add('lap');
+  const lapNumberElement = document.createElement('p');
+  lapNumberElement.textContent = '1';
+  lapNumberElement.classList.add('lap-number');
+  const lapTimeElement = document.createElement('p');
+  lapTimeElement.classList.add = 'lap-time';
+  lapTimeElement.textContent = '00:00.00';
+  lapElement.append(lapNumberElement); 
+  lapElement.append(lapTimeElement);
+
+  lapsContainer.append(lapElement);
 }
 
 const resetStopwatchValues = () => {
