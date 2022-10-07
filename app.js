@@ -93,9 +93,7 @@ const addLapTime = () => {
 const createLapElement = (time) => {
   const lapElement = document.createElement('div');
   lapElement.classList.add('lap');
-  const lapNumberElement = document.createElement('p');
-  lapNumberElement.textContent = '1';
-  lapNumberElement.classList.add('lap-number');
+  const lapNumberElement = createLapNumberElement();
   const lapTimeElement = createLapTimeElement(time);
   console.log(lapTimeElement);
   lapElement.append(lapNumberElement);
@@ -112,6 +110,15 @@ const createLapTimeElement = time => {
   lapTimeElement.textContent = lapTimeText;
 
   return lapTimeElement;
+}
+
+const createLapNumberElement = () => {
+  const lapNumberElement = document.createElement('p');
+  const number = lapsContainer.children.length + 1;
+  lapNumberElement.textContent = number;
+  lapNumberElement.classList.add('lap-number');
+
+  return lapNumberElement;
 }
 
 const resetStopwatchValues = () => {
