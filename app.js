@@ -127,4 +127,5 @@ const resetStopwatchValues = () => {
   output.innerText = `00 : 00.00`;
   totalTime = 0;
   restartTotalTime = 0;
+  lapsContainer.innerHTML = '';
 }
