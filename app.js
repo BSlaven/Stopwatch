@@ -124,8 +124,9 @@ const createLapNumberElement = () => {
 const resetStopwatchValues = () => {
   isRunning = false;
   startRestartBtn.textContent = 'start';
-  output.innerText = `00 : 00.00`;
   totalTime = 0;
   restartTotalTime = 0;
+  const time = formatTimes(totalTime);
+  output.innerText = outputTimes(time);
   lapsContainer.innerHTML = '';
 }
